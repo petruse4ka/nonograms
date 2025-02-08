@@ -1,0 +1,38 @@
+@use '../abstracts/variables' as *;
+
+.game {
+  &__timer {
+    font-family: $primary-font;
+    font-size: $fs-base;
+    font-weight: 800;
+    color: $dark-purple;
+    border: 2px solid $light-purple;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 200px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+
+    @media screen and (max-width: 850px) {
+      max-width: 125px;
+    }
+
+    @media screen and (max-width: 499px) {
+      max-width: 90px;
+      font-size: $fs-small;
+      padding: 5px;
+    }
+
+    @media screen and (max-width: 379px) {
+      max-width: 55px;
+    }
+  }
+}
+
+.body--dark-theme {
+  .game__timer {
+    color: $light-purple;
+    border-color: $neon-teal;
+  }
+}

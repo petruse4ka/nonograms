@@ -1,0 +1,270 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.body {
+  @include flex-column-center();
+  width: 100%;
+  min-height: 100vh;
+  background-color: $background-color;
+  -webkit-tap-highlight-color: rgb(0 0 0 / 0%);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease-in-out;
+}
+
+.game {
+  @include flex-row-center();
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: center;
+  transition: all 0.3s ease-in-out;
+
+  @media screen and (max-width: 850px) {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__grid {
+    @include flex-column-center();
+    width: 95%;
+    max-width: 495px;
+
+    &--disabled {
+      .game__grid-cell {
+        cursor: default;
+      }
+    }
+  }
+
+  &__grid-section {
+    @include flex-column-center();
+    width: 100%;
+    max-width: 495px;
+  }
+
+  &__grid-row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 495px;
+
+    &:nth-child(2) {
+      .game__clues-container {
+        border-top: 3px solid $pastel-lavender;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .game__grid-cell {
+        border-top: 3px solid $pastel-lavender;
+        transition: all 0.3s ease-in-out;
+      }
+    }
+  }
+
+  &__clues-container {
+    @include flex-column-center();
+    width: 20%;
+    max-width: 75px;
+    background-color: $light-pink;
+    transition: all 0.3s ease-in-out;
+
+    &--top {
+      padding: 5px 0;
+      border-top: 3px solid $pastel-lavender;
+      border-right: 1px solid $pastel-lavender;
+      transition: all 0.3s ease-in-out;
+    }
+
+    &--corner {
+      width: 100%;
+      border-left: none;
+      border-top: none;
+      border-right: 3px solid $pastel-lavender;
+      background: none;
+      transition: all 0.3s ease-in-out;
+    }
+
+    &--left {
+      padding: 0 5px;
+      gap: 5px;
+      width: 90%;
+      max-width: 75px;
+      flex-direction: row;
+      border-right: 3px solid $pastel-lavender;
+      border-bottom: 1px solid $pastel-lavender;
+      border-left: 3px solid $pastel-lavender;
+      transition: all 0.3s ease-in-out;
+    }
+
+    &--divider {
+      border-bottom: 3px solid $pastel-lavender;
+      transition: all 0.3s ease-in-out;
+    }
+  }
+
+  &__clues-cell {
+    @include flex-row-center();
+    font-family: $primary-font;
+    font-size: $fs-small;
+    color: $dark-purple;
+    transition: all 0.3s ease-in-out;
+  }
+
+  &__grid-cell {
+    width: 20%;
+    max-width: 75px;
+    aspect-ratio: 1 / 1;
+    border-right: 1px solid $pastel-lavender;
+    border-bottom: 1px solid $pastel-lavender;
+    background-color: $cell-bg-color;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &--checked {
+      background-color: $dark-purple;
+      transition: all 0.3s ease-in-out;
+    }
+
+    &--divider-horizontal {
+      border-bottom: 3px solid $pastel-lavender;
+      transition: all 0.3s ease-in-out;
+    }
+
+    &--divider-vertical {
+      border-right: 3px solid $pastel-lavender;
+      transition: all 0.3s ease-in-out;
+    }
+
+    &--crossed {
+      position: relative;
+      transition: all 0.3s ease-in-out;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 75%;
+        height: 75%;
+        background: linear-gradient(
+            45deg,
+            transparent 45%,
+            $pastel-lavender 48%,
+            $pastel-lavender 52%,
+            transparent 55%
+          ),
+          linear-gradient(
+            -45deg,
+            transparent 45%,
+            $pastel-lavender 48%,
+            $pastel-lavender 52%,
+            transparent 55%
+          );
+      }
+    }
+  }
+}
+
+.body--dark-theme {
+  background-color: $background-color-dark;
+
+  .game {
+    &__clues-container {
+      background-color: $blue;
+
+      &--corner {
+        background: none;
+      }
+    }
+
+    &__clues-cell {
+      color: $neon-teal;
+    }
+
+    &__grid-cell {
+      border-color: $red;
+      background-color: $grey;
+
+      &--checked {
+        background-color: $light-gray;
+      }
+
+      &--divider-horizontal {
+        border-color: $red;
+      }
+
+      &--divider-vertical {
+        border-color: $red;
+      }
+
+      &--crossed::after {
+        background: linear-gradient(
+            45deg,
+            transparent 45%,
+            $red 48%,
+            $red 52%,
+            transparent 55%
+          ),
+          linear-gradient(
+            -45deg,
+            transparent 45%,
+            $red 48%,
+            $red 52%,
+            transparent 55%
+          );
+      }
+    }
+
+    &__grid {
+      border-color: $red;
+
+      &-row {
+        &:nth-child(2) {
+          .game__clues-container {
+            border-color: $red;
+          }
+
+          .game__grid-cell {
+            border-color: $red;
+          }
+        }
+      }
+    }
+
+    &__grid-corner,
+    &__clues-column,
+    &__clues-column--divider,
+    &__clues-container--left,
+    &__clues-container--top,
+    &__clues-container--divider,
+    &__grid-section--top {
+      border-color: $red;
+    }
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .game {
+    &__clues-container--left {
+      gap: 3px;
+    }
+
+    &__clues-cell {
+      font-size: 12px;
+    }
+  }
+}
+
+@media screen and (max-width: 499px) {
+  .game {
+    &__clues-cell {
+      font-size: 8px;
+    }
+  }
+}

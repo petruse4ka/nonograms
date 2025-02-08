@@ -1,0 +1,32 @@
+@use '../abstracts/variables' as *;
+
+.game {
+  &__message {
+    width: 95%;
+    max-width: 900px;
+    padding: 20px;
+    border-radius: 10px;
+    font-family: $primary-font;
+    font-size: $fs-large;
+    text-align: center;
+    margin-top: 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    @media screen and (max-width: 850px) {
+      width: 95%;
+      max-width: 495px;
+    }
+
+    &--win {
+      background-color: $light-purple;
+      color: $dark-purple;
+    }
+  }
+}
+
+.body--dark-theme {
+  .game__message--win {
+    background-color: $neon-teal;
+    color: $light-gray;
+  }
+}

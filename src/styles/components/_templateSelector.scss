@@ -1,0 +1,193 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.game {
+  &__template-selector {
+    @include flex-column-center();
+    width: 95%;
+    max-width: 900px;
+    margin: 25px 0 35px;
+    gap: 20px;
+  }
+
+  &__difficulty-container {
+    @include flex-row-center();
+    flex-wrap: wrap;
+    gap: 35px;
+    width: 100%;
+    max-width: 900px;
+  }
+
+  &__difficulty-select {
+    @include flex-column-center();
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: 2px solid transparent;
+    background-color: $light-pink;
+    color: $dark-purple;
+    font-weight: 300;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    &--active {
+      border-color: $pastel-lavender;
+      background-color: $pastel-lavender;
+    }
+  }
+
+  &__template-title {
+    font-family: $primary-font;
+    font-size: $fs-xlarge;
+    color: $dark-purple;
+    text-align: center;
+    margin: 0;
+    font-weight: 300;
+    transition: all 0.3s ease-in-out;
+  }
+
+  &__templates-container {
+    @include flex-row-center();
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 100%;
+    max-width: 900px;
+
+    @media screen and (max-width: 499px) {
+      gap: 10px;
+    }
+  }
+
+  &__template-select {
+    @include flex-column-center();
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    border: 2px solid transparent;
+    background-color: $light-pink;
+    min-width: 125px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    &--active {
+      background-color: $light-purple;
+    }
+
+    @media screen and (max-width: 850px) {
+      min-width: 50px;
+      padding: 10px 10px;
+    }
+
+    @media screen and (max-width: 379px) {
+      min-width: 40px;
+      padding: 10px 10px;
+    }
+  }
+
+  &__template-info {
+    @include flex-column-center();
+    gap: 5px;
+    text-align: center;
+    width: 100%;
+  }
+
+  &__template-icon {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    margin-bottom: 10px;
+    transition: all 0.3s ease-in-out;
+
+    @media screen and (max-width: 850px) {
+      width: 35px;
+      height: 35px;
+    }
+
+    @media screen and (max-width: 499px) {
+      margin-bottom: 0;
+    }
+
+    @media screen and (max-width: 379px) {
+      width: 25px;
+      height: 25px;
+    }
+  }
+
+  &__template-name {
+    font-size: $fs-base;
+    margin: 0;
+    transition: all 0.3s ease-in-out;
+    font-weight: 300;
+    color: $dark-purple;
+
+    @media screen and (max-width: 499px) {
+      display: none;
+    }
+  }
+
+  &__template-level {
+    font-size: $fs-small;
+    opacity: 0.8;
+  }
+}
+
+@media (hover: hover) {
+  .game {
+    &__difficulty-select:hover {
+      border-color: $muted-blue;
+    }
+
+    &__template-select:hover {
+      border-color: $muted-blue;
+    }
+  }
+}
+
+.body--dark-theme {
+  .game {
+    &__template-title {
+      color: $light-gray;
+    }
+
+    &__difficulty-select {
+      background-color: $blue;
+      color: $light-gray;
+      box-shadow: 0 5px 15px rgba(253, 253, 253, 0.2);
+
+      @media (hover: hover) {
+        &:hover {
+          border-color: $light-gray;
+        }
+      }
+
+      &--active {
+        border-color: $red;
+        background-color: $red;
+      }
+    }
+
+    &__template-select {
+      background-color: $blue;
+      color: $light-purple;
+      box-shadow: 0 5px 15px rgba(253, 253, 253, 0.2);
+
+      @media (hover: hover) {
+        &:hover {
+          border-color: $light-gray;
+        }
+      }
+
+      &--active {
+        background-color: $neon-teal;
+      }
+    }
+
+    &__template-name {
+      color: $light-gray;
+    }
+
+    &__template-icon {
+      filter: brightness(0) invert(1);
+    }
+  }
+}

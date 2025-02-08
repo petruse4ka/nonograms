@@ -1,0 +1,50 @@
+@use 'sass:color';
+@use 'variables' as *;
+
+// Buttons
+@mixin button($bg-color, $color) {
+  background-color: $bg-color;
+  color: $color;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  font-family: $primary-font;
+  font-size: $fs-base;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: color.adjust($bg-color, $lightness: -10%);
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  &:active {
+    opacity: 0.95;
+  }
+}
+
+// Flex-containers
+@mixin flex-column-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-row-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

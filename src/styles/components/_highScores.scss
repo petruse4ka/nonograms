@@ -1,0 +1,128 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.game {
+  &__high-scores {
+    @include flex-column-center();
+    justify-content: flex-start;
+    width: 95%;
+    max-width: 900px;
+    flex: 1;
+    margin: 75px 0 50px;
+
+    @media screen and (max-width: 850px) {
+      max-width: 495px;
+    }
+
+    &-title {
+      font-family: $primary-font;
+      font-size: $fs-xlarge;
+      color: $dark-purple;
+      text-align: center;
+      font-weight: 300;
+      margin: 0 0 25px;
+      transition: all 0.3s ease-in-out;
+    }
+  }
+
+  &__scores-header,
+  &__scores-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100%;
+    padding: 15px;
+  }
+
+  &__scores-header {
+    background-color: $light-purple;
+    border-radius: 10px 10px 0 0;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+  }
+
+  &__no-scores-message {
+    text-align: center;
+    color: $dark-purple;
+    font-family: $primary-font;
+    font-size: $fs-base;
+    width: 100%;
+    padding: 20px;
+    margin: 0;
+    border-left: 2px solid $light-purple;
+    border-right: 2px solid $light-purple;
+    border-bottom: 2px solid $light-purple;
+    border-radius: 0 0 10px 10px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  &__scores-list {
+    width: 100%;
+    border-radius: 0 0 10px 10px;
+  }
+
+  &__scores-item {
+    border-bottom: 1px solid $light-purple;
+    transition: all 0.3s ease-in-out;
+
+    &:nth-child(odd) {
+      background-color: $pastel-lavender;
+      transition: all 0.3s ease-in-out;
+    }
+
+    &:nth-child(even) {
+      background-color: $light-pink;
+      transition: all 0.3s ease-in-out;
+    }
+
+    &:last-child {
+      border-bottom: none;
+      border-radius: 0 0 10px 10px;
+    }
+  }
+
+  &__scores-header-item,
+  &__scores-data {
+    color: $dark-purple;
+    padding: 0 10px;
+    font-weight: 300;
+    transition: all 0.3s ease-in-out;
+  }
+}
+
+.body--dark-theme {
+  .game {
+    &__high-scores-title {
+      color: $light-gray;
+    }
+
+    &__scores-header {
+      background-color: $neon-teal;
+    }
+
+    &__no-scores-message {
+      color: $light-gray;
+      border-color: $neon-teal;
+    }
+
+    &__scores-list {
+      background-color: $grey;
+    }
+
+    &__scores-item {
+      border-color: $grey;
+
+      &:nth-child(odd) {
+        background-color: $grey;
+      }
+
+      &:nth-child(even) {
+        background-color: $blue;
+      }
+    }
+
+    &__scores-header-item,
+    &__scores-data {
+      color: $light-gray;
+    }
+  }
+}

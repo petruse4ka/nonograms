@@ -1,0 +1,36 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.footer {
+  @include flex-row-center();
+  width: 100%;
+  margin-top: 50px;
+  padding: 20px;
+  text-align: center;
+  font-family: $primary-font;
+  font-size: $fs-base;
+  background-color: $muted-blue;
+  transition: all 0.3s ease-in-out;
+
+  &__link {
+    color: $dark-purple;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+
+    @media (hover: hover) {
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+}
+
+.body--dark-theme {
+  .footer {
+    background-color: $blue;
+
+    &__link {
+      color: $neon-teal;
+    }
+  }
+}
